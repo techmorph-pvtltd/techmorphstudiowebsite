@@ -1,0 +1,731 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
+  <meta name="description" content="TechMorph - AI-Powered Software & SaaS Agency. Next-gen digital engineering for visionary brands.">
+  <title>TechMorph | Still Developing</title>
+  <!-- Google Fonts + Inter -->
+  <link href="https://fonts.googleapis.com/css2?family=Inter:opsz,wght@14..32,300;400;500;600;700;800;900&display=swap" rel="stylesheet">
+  <!-- Font Awesome 6 -->
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+  <!-- Bootstrap 5 -->
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/css/bootstrap.min.css" rel="stylesheet">
+  <!-- AOS -->
+  <link href="https://unpkg.com/aos@2.3.1/dist/aos.css" rel="stylesheet">
+  <style>
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+
+    body {
+      font-family: 'Inter', sans-serif;
+      background-color: #DCE6F2;
+      color: #2E4A73;
+      overflow-x: hidden;
+      scroll-behavior: smooth;
+    }
+
+    /* Color Palette Variables */
+    :root {
+      --primary-dark: #2E4A73;
+      --primary-medium: #3F6AA1;
+      --bg-light: #DCE6F2;
+      --bg-section: #9DB7D5;
+      --white: #FFFFFF;
+      --shadow-sm: 0 10px 25px -5px rgba(0, 0, 0, 0.05), 0 8px 10px -6px rgba(0, 0, 0, 0.02);
+      --shadow-md: 0 20px 25px -12px rgba(0, 0, 0, 0.08);
+      --radius-card: 1rem;
+      --radius-btn: 2rem;
+    }
+
+    /* Navbar */
+    .navbar {
+      background-color: var(--primary-dark) !important;
+      padding: 0.1rem 1.5rem;
+      transition: all 0.3s;
+      box-shadow: 0 2px 15px rgba(0,0,0,0.05);
+    }
+    .navbar-brand {
+      color: var(--white) !important;
+      font-weight: 800;
+      font-size: 1.8rem;
+      letter-spacing: -0.02em;
+    }
+    .navbar-brand span {
+      color: var(--bg-section);
+    }
+    .nav-link {
+      color: var(--white) !important;
+      font-weight: 500;
+      margin: 0 0.5rem;
+      transition: 0.2s;
+    }
+    .nav-link:hover, .nav-link.active {
+      color: var(--bg-section) !important;
+    }
+    .navbar-toggler {
+      border-color: rgba(255,255,255,0.3);
+    }
+    .navbar-toggler-icon {
+      filter: brightness(0) invert(1);
+    }
+
+    /* This .sticky class would be toggled by JavaScript on scroll */
+    .navbar.sticky {
+      padding-top: 0.8rem;
+      padding-bottom: 0.8rem;
+      box-shadow: var(--shadow-md);
+    }
+
+    /* Buttons */
+    .btn-primary-custom {
+      background-color: var(--primary-dark);
+      color: var(--white);
+      border: none;
+      padding: 12px 32px;
+      border-radius: var(--radius-btn);
+      font-weight: 600;
+      transition: all 0.3s;
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      text-decoration: none;
+    }
+    .btn-primary-custom:hover {
+      background-color: var(--primary-medium);
+      color: var(--white);
+      transform: translateY(-2px);
+      box-shadow: var(--shadow-md);
+    }
+    .btn-secondary-custom {
+      background-color: var(--bg-section);
+      color: var(--primary-dark);
+      border: none;
+      padding: 12px 32px;
+      border-radius: var(--radius-btn);
+      font-weight: 600;
+      transition: all 0.3s;
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      text-decoration: none;
+    }
+    .btn-secondary-custom:hover {
+      background-color: var(--primary-medium);
+      color: var(--white);
+      transform: translateY(-2px);
+    }
+
+    /* Hero Section */
+    .hero {
+      background: var(--bg-light);
+      position: relative;
+      min-height: 100vh;
+      display: flex;
+      align-items: center;
+      padding: 140px 0 100px;
+      overflow: hidden;
+    }
+    #molecularCanvas {
+      position: absolute;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      z-index: 0;
+      pointer-events: none;
+    }
+    .hero .container {
+      position: relative;
+      z-index: 10;
+    }
+    .hero-title {
+      font-size: 3.8rem;
+      font-weight: 800;
+      color: var(--primary-dark);
+      letter-spacing: -0.02em;
+    }
+    .hero-subtext {
+      color: var(--primary-medium);
+      font-size: 1.2rem;
+      font-weight: 500;
+    }
+    .badge-premium {
+      background: rgba(46, 74, 115, 0.1);
+      backdrop-filter: blur(4px);
+      border-radius: 100px;
+      padding: 6px 18px;
+      font-weight: 500;
+      color: var(--primary-dark);
+      display: inline-flex;
+      align-items: center;
+      gap: 6px;
+    }
+
+    /* Section backgrounds alternating */
+    .section-light {
+      background-color: var(--bg-light);
+    }
+    .section-mid {
+      background-color: var(--bg-section);
+    }
+    .section-light, .section-mid {
+      padding: 80px 0;
+    }
+    .section-title {
+      color: var(--primary-dark);
+      font-weight: 800;
+      margin-bottom: 1rem;
+    }
+    .section-subtitle {
+      color: var(--primary-medium);
+      max-width: 700px;
+      margin-left: auto;
+      margin-right: auto;
+    }
+
+    /* Cards */
+    .service-card {
+      background: var(--white);
+      border-radius: var(--radius-card);
+      padding: 2rem;
+      height: 100%;
+      transition: all 0.3s;
+      box-shadow: var(--shadow-sm);
+      border: 1px solid rgba(157, 183, 213, 0.3);
+    }
+    .service-card:hover {
+      transform: translateY(-8px);
+      box-shadow: var(--shadow-md);
+      border-color: var(--primary-medium);
+    }
+    .service-icon {
+      width: 64px;
+      height: 64px;
+      background: rgba(46, 74, 115, 0.1);
+      border-radius: 20px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 28px;
+      color: var(--primary-dark);
+      margin-bottom: 1.5rem;
+    }
+    .service-card h4 {
+      color: var(--primary-dark);
+      font-weight: 700;
+    }
+    .service-card p {
+      color: var(--primary-medium);
+    }
+
+    /* Portfolio */
+    .portfolio-card {
+      background: var(--white);
+      border-radius: var(--radius-card);
+      overflow: hidden;
+      transition: all 0.3s;
+      box-shadow: var(--shadow-sm);
+      height: 100%;
+    }
+    .portfolio-img {
+      width: 100%;
+      aspect-ratio: 4/3;
+      object-fit: cover;
+      transition: transform 0.5s;
+    }
+    .portfolio-card:hover .portfolio-img {
+      transform: scale(1.05);
+    }
+    .portfolio-body {
+      padding: 1.5rem;
+    }
+    .portfolio-body h5 {
+      color: var(--primary-dark);
+      font-weight: 700;
+    }
+    .portfolio-body p {
+      color: var(--primary-medium);
+    }
+
+    /* Advanced Portfolio Layout */
+    .portfolio-wrapper {
+      position: relative;
+      width: 100%;
+      height: 280px;
+      overflow: hidden;
+      background: linear-gradient(135deg, #f8fbff 0%, #eef3f9 100%);
+      border-radius: 1rem 1rem 0 0;
+      padding: 20px;
+    }
+    .screen-img {
+      width: 85%;
+      height: auto;
+      border-radius: 6px;
+      box-shadow: 0 15px 40px rgba(0,0,0,0.1);
+      position: absolute;
+      top: 15%;
+      left: 7%;
+      transition: all 0.6s cubic-bezier(0.165, 0.84, 0.44, 1);
+      border: 1px solid rgba(0,0,0,0.05);
+    }
+    .mobile-img {
+      width: 25%;
+      height: auto;
+      border-radius: 10px;
+      box-shadow: 0 15px 35px rgba(0,0,0,0.2);
+      position: absolute;
+      bottom: 10%;
+      right: 7%;
+      z-index: 2;
+      border: 2px solid white;
+      transition: all 0.6s cubic-bezier(0.165, 0.84, 0.44, 1);
+    }
+    .portfolio-card:hover .screen-img {
+      transform: translateY(-15px) scale(1.03);
+      box-shadow: 0 25px 50px rgba(0,0,0,0.15);
+    }
+    .portfolio-card:hover .mobile-img {
+      transform: translateY(-20px) rotate(-3deg) scale(1.05);
+      box-shadow: 0 25px 45px rgba(0,0,0,0.25);
+    }
+    @media (max-width: 576px) {
+      .portfolio-wrapper { height: 220px; }
+      .mobile-img { width: 30%; }
+    }
+
+    /* Tech stack pills */
+    .tech-pill {
+      background: var(--white);
+      border-radius: 60px;
+      padding: 12px 24px;
+      font-weight: 600;
+      color: var(--primary-dark);
+      text-align: center;
+      transition: 0.2s;
+      box-shadow: var(--shadow-sm);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      gap: 10px;
+      border: 1px solid rgba(157,183,213,0.4);
+    }
+    .tech-pill:hover {
+      background: var(--primary-dark);
+      color: var(--white);
+      transform: translateY(-3px);
+    }
+
+    /* Testimonials */
+    .testimonial-card {
+      background: var(--white);
+      border-radius: var(--radius-card);
+      padding: 2rem;
+      box-shadow: var(--shadow-sm);
+      height: 100%;
+    }
+    .testimonial-card i.fa-quote-left {
+      color: var(--primary-medium);
+      opacity: 0.5;
+    }
+    .testimonial-text {
+      color: var(--primary-dark);
+      font-weight: 500;
+    }
+
+    /* FAQ Accordion - Clean pattern */
+    .faq-item {
+      background: var(--white);
+      border-radius: 1rem;
+      margin-bottom: 1.25rem;
+      border: none;
+      box-shadow: var(--shadow-sm);
+      overflow: hidden;
+    }
+    .faq-question {
+      background: var(--white);
+      color: var(--primary-dark);
+      font-weight: 700;
+      padding: 1.25rem 1.5rem;
+      font-size: 1.1rem;
+      border: none;
+      width: 100%;
+      text-align: left;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      cursor: pointer;
+      transition: 0.2s;
+    }
+    .faq-question:hover {
+      background: #F5F8FE;
+    }
+    .faq-question i {
+      transition: transform 0.3s;
+      color: var(--primary-medium);
+    }
+    .faq-answer {
+      padding: 0 1.5rem 1.25rem 1.5rem;
+      color: var(--primary-medium);
+      border-top: 1px solid rgba(157,183,213,0.3);
+      display: none;
+    }
+    .faq-answer.show {
+      display: block;
+    }
+    .faq-question.active i {
+      transform: rotate(180deg);
+    }
+
+    /* Contact Form */
+    .contact-card {
+      background: var(--white);
+      border-radius: var(--radius-card);
+      padding: 2.5rem;
+      box-shadow: var(--shadow-md);
+    }
+    .form-control-custom {
+      background: #F8FAFE;
+      border: 1px solid #DCE6F2;
+      border-radius: 1rem;
+      padding: 12px 20px;
+      color: var(--primary-dark);
+      transition: 0.2s;
+    }
+    .form-control-custom:focus {
+      border-color: var(--primary-medium);
+      box-shadow: 0 0 0 3px rgba(63,106,161,0.2);
+      outline: none;
+    }
+
+    /* Footer */
+    .footer {
+      background-color: var(--primary-dark);
+      color: var(--white);
+      padding: 3rem 0 2rem;
+    }
+    .footer a {
+      color: var(--white);
+      text-decoration: none;
+      transition: 0.2s;
+    }
+    .footer a:hover {
+      color: var(--bg-section);
+    }
+    .scroll-top {
+      position: fixed;
+      bottom: 2rem;
+      right: 2rem;
+      background: var(--primary-dark);
+      width: 48px;
+      height: 48px;
+      border-radius: 50%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      z-index: 99;
+      opacity: 0;
+      transition: 0.2s;
+      cursor: pointer;
+      color: white;
+      box-shadow: var(--shadow-sm);
+    }
+    .scroll-top:hover {
+      background: var(--primary-medium);
+      transform: translateY(-3px);
+    }
+
+    /* Responsive */
+    @media (max-width: 768px) {
+      .hero-title { font-size: 2.2rem; }
+      .section-light, .section-mid { padding: 60px 0; }
+      .btn-primary-custom, .btn-secondary-custom { padding: 10px 24px; }
+    }
+  </style>
+</head>
+<body>
+
+  <!-- Navbar -->
+  <nav class="navbar navbar-expand-lg fixed-top">
+    <div class="container">
+      <a class="navbar-brand" href="#"><img src="./logo with name without bg.png" style="height: 100px;" alt="" srcset=""></a>
+      <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav">
+        <span class="navbar-toggler-icon"></span>
+      </button>
+      <div class="collapse navbar-collapse" id="navbarNav">
+        <ul class="navbar-nav ms-auto align-items-center gap-2">
+          <li class="nav-item"><a class="nav-link" href="#home">Home</a></li>
+          <li class="nav-item"><a class="nav-link" href="#services">Services</a></li>
+          <li class="nav-item"><a class="nav-link" href="#portfolio">Portfolio</a></li>
+          <li class="nav-item"><a class="nav-link" href="#testimonials">Reviews</a></li>
+          <li class="nav-item"><a class="nav-link" href="#faq">FAQ</a></li>
+          <li class="nav-item ms-lg-2"><a href="#contact" class="btn-secondary-custom" style="padding: 8px 24px;">Contact →</a></li>
+        </ul>
+      </div>
+    </div>
+  </nav>
+
+  <!-- Hero Section with Molecular Animation (Mouse Repel) -->
+  <section id="home" class="hero">
+    <canvas id="molecularCanvas"></canvas>
+    <div class="container">
+      <div class="row justify-content-center text-center">
+        <div class="col-lg-10" data-aos="fade-up">
+          <div class="badge-premium mb-4"><i class="fas fa-dna"></i> Morph Intelligence • Next-Gen DevOps </div>
+          <h1 class="hero-title">Engineering <span style="color:#2E4A73;">HyperSonic</span> <br> AI Ecosystems</h1>
+          <p class="hero-subtext mt-3 mx-auto" style="max-width: 700px;">We architect scalable digital infrastructure — where AI meets performance, and ideas turn into molecular-scale platforms.</p>
+          <div class="d-flex gap-4 justify-content-center mt-4 flex-wrap">
+            <a href="#contact" class="btn-primary-custom"><i class="fas fa-bolt"></i> Launch Your Vision</a>
+            <a href="#portfolio" class="btn-secondary-custom"><i class="fas fa-globe"></i> Explore Work</a>
+          </div>
+          <div class="row mt-5 justify-content-center g-3">
+            <div class="col-auto"><i class="fas fa-chart-line me-2" style="color:#2E4A73;"></i> <span class="fw-semibold">99.99% Uptime SLA</span></div>
+            <div class="col-auto"><i class="fas fa-robot me-2" style="color:#2E4A73;"></i> <span class="fw-semibold">AI-Native Core</span></div>
+            <div class="col-auto"><i class="fas fa-shield-alt me-2" style="color:#2E4A73;"></i> <span class="fw-semibold">Quantum Security</span></div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Services Section (Light) -->
+  <section id="services" class="section-light">
+    <div class="container">
+      <div class="text-center mb-5" data-aos="fade-up">
+        <span class="badge-premium"><i class="fas fa-crown"></i> Elite Arsenal</span>
+        <h2 class="section-title display-5 fw-bold mt-3">Core Digital Services</h2>
+        <p class="section-subtitle">High-velocity engineering for the hyper-connected era.</p>
+      </div>
+      <div class="row g-4">
+        <div class="col-md-6 col-lg-4" data-aos="fade-up" data-aos-delay="100">
+          <div class="service-card"><div class="service-icon"><i class="fas fa-microchip"></i></div><h4>Website Development</h4><p>WebAssembly, edge computing sub-50ms performance.</p></div>
+        </div>
+        <div class="col-md-6 col-lg-4" data-aos="fade-up" data-aos-delay="150">
+          <div class="service-card"><div class="service-icon"><i class="fas fa-mobile-alt"></i></div><h4>Mobile App Development</h4><p>Flutter, Dart Multiplatform — seamless native experiences.</p></div>
+        </div>
+        <div class="col-md-6 col-lg-4" data-aos="fade-up" data-aos-delay="200">
+          <div class="service-card"><div class="service-icon"><i class="fas fa-cloud-upload-alt"></i></div><h4>SaaS Development</h4><p>Multi-tenant architecture, billing, analytics — ready to scale.</p></div>
+        </div>
+        <div class="col-md-6 col-lg-4" data-aos="fade-up" data-aos-delay="250">
+          <div class="service-card"><div class="service-icon"><i class="fas fa-brain"></i></div><h4>Autonomous AI Bots</h4><p>Whatsapp Integration, pipelines, cognitive automation.</p></div>
+        </div>
+        <div class="col-md-6 col-lg-4" data-aos="fade-up" data-aos-delay="300">
+          <div class="service-card"><div class="service-icon"><i class="fas fa-crown"></i></div><h4>Immersive UX/UI</h4><p>Design systems that mesmerize & convert.</p></div>
+        </div>
+        <div class="col-md-6 col-lg-4" data-aos="fade-up" data-aos-delay="350">
+          <div class="service-card"><div class="service-icon"><i class="fas fa-chart-line"></i></div><h4>Digital Twins & ERP</h4><p>Real-time simulation, enterprise orchestration.</p></div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Portfolio (Mid background) -->
+  <section id="portfolio" class="section-mid">
+    <div class="container">
+      <div class="text-center mb-5" data-aos="fade-up">
+        <span class="badge-premium" style="background: rgba(255,255,255,0.2); color: #2E4A73;"><i class="fas fa-dna"></i> Masterpieces</span>
+        <h2 class="section-title display-5 fw-bold mt-3">Recent Orchestrations</h2>
+        <p class="section-subtitle">Cutting-edge solutions deployed for global innovators.</p>
+      </div>
+      <div class="row g-5">
+        <!-- Project 1: Cremics -->
+        <div class="col-lg-6" data-aos="fade-up">
+          <div class="portfolio-card">
+            <div class="portfolio-wrapper">
+              <img class="screen-img" src="./assets/project/cremics screen.png" alt="Cremics Screen">
+              <img class="mobile-img" src="./assets/project/cremics mobile.png" alt="Cremics Mobile">
+            </div>
+            <div class="portfolio-body">
+              <div class="d-flex justify-content-between align-items-center mb-2">
+                <span class="badge rounded-pill bg-primary bg-opacity-10 text-primary px-3 py-2">Custom ERP • Software</span>
+                <span class="small text-secondary fw-bold">2026</span>
+              </div>
+              <h5>Cremics ERP Ecosystem</h5>
+              <p>Next-gen ceramics ERP with AI-driven design visualization and seamless hyper-speed Fintech.</p>
+            </div>
+          </div>
+        </div>
+        <!-- Project 2: Deceptionist -->
+        <div class="col-lg-6" data-aos="fade-up" data-aos-delay="100">
+          <div class="portfolio-card">
+            <div class="portfolio-wrapper">
+              <img class="screen-img" src="./assets/project/deceptionist screen.png" alt="Deceptionist Screen">
+              <img class="mobile-img" src="./assets/project/deceptionist mobile.png" alt="Deceptionist Mobile">
+            </div>
+            <div class="portfolio-body">
+              <div class="d-flex justify-content-between align-items-center mb-2">
+                <span class="badge rounded-pill bg-primary bg-opacity-10 text-primary px-3 py-2">Startup • Game</span>
+                <span class="small text-secondary fw-bold">2025</span>
+              </div>
+              <h5>The Deceptionist Core</h5>
+              <p>A game startup that boost memory.</p>
+            </div>
+          </div>
+        </div>
+        <!-- Project 3: Email -->
+        <div class="col-lg-6" data-aos="fade-up">
+          <div class="portfolio-card">
+            <div class="portfolio-wrapper">
+              <img class="screen-img" src="./assets/project/email screen.png" alt="Email Screen">
+              <img class="mobile-img" src="./assets/project/email mobile.png" alt="Email Mobile">
+            </div>
+            <div class="portfolio-body">
+              <div class="d-flex justify-content-between align-items-center mb-2">
+                <span class="badge rounded-pill bg-primary bg-opacity-10 text-primary px-3 py-2">Enterprise • Workflow</span>
+                <span class="small text-secondary fw-bold">2026</span>
+              </div>
+              <h5>Email Velocity Suite</h5>
+              <p>High-performance enterprise mailing system with autonomous sorting and cognitive response agents.</p>
+            </div>
+          </div>
+        </div>
+        <!-- Project 4: Zyra -->
+        <div class="col-lg-6" data-aos="fade-up" data-aos-delay="100">
+          <div class="portfolio-card">
+            <div class="portfolio-wrapper">
+              <img class="screen-img" src="./assets/project/zyra screen.png" alt="Zyra Screen">
+              <img class="mobile-img" src="./assets/project/zyra mobile.png" alt="Zyra Mobile">
+            </div>
+            <div class="portfolio-body">
+              <div class="d-flex justify-content-between align-items-center mb-2">
+                <span class="badge rounded-pill bg-primary bg-opacity-10 text-primary px-3 py-2">E-commerce • online Selling</span>
+                <span class="small text-secondary fw-bold">2025</span>
+              </div>
+              <h5>Zyra Fashion E-commerce</h5>
+              <p>Molecular-scale E-commerce platform for Zyra Fashion and with fast checkout.</p>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Testimonials (Mid) -->
+  <section id="testimonials" class="section-mid">
+    <div class="container">
+      <div class="text-center mb-5" data-aos="fade-up"><span class="badge-premium" style="background: rgba(255,255,255,0.2);"><i class="fas fa-quote-right"></i> Voices</span><h2 class="section-title display-5 fw-bold mt-3">Trusted by Global Pioneers</h2></div>
+      <div class="row g-4">
+        <div class="col-md-6 col-lg-4" data-aos="fade-up"><div class="testimonial-card"><i class="fas fa-quote-left fa-2x mb-3"></i><p class="testimonial-text">"TechMorph's molecular engineering approach rebuilt our core into an AI juggernaut. 3x efficiency."</p><div class="mt-3 d-flex align-items-center gap-3"><img src="https://i.pravatar.cc/100?u=11" class="rounded-circle" width="48"><div><h6 class="mb-0">Dr. Elena Voss</h6><small style="color:#3F6AA1;">CTO, Nexus AI</small></div></div></div></div>
+        <div class="col-md-6 col-lg-4" data-aos="fade-up" data-aos-delay="100"><div class="testimonial-card"><i class="fas fa-quote-left fa-2x mb-3"></i><p class="testimonial-text">"The most visionary dev house. Their autonomous agents cut operational latency by 70%."</p><div class="mt-3 d-flex align-items-center gap-3"><img src="https://i.pravatar.cc/100?u=22" class="rounded-circle" width="48"><div><h6 class="mb-0">Marcus Sterling</h6><small style="color:#3F6AA1;">CEO, OmniRetail</small></div></div></div></div>
+        <div class="col-md-6 col-lg-4" data-aos="fade-up" data-aos-delay="200"><div class="testimonial-card"><i class="fas fa-quote-left fa-2x mb-3"></i><p class="testimonial-text">"HyperSonic delivery. Our SaaS product scaled to 2M users in 5 months. Incomparable architecture."</p><div class="mt-3 d-flex align-items-center gap-3"><img src="https://i.pravatar.cc/100?u=33" class="rounded-circle" width="48"><div><h6 class="mb-0">Sophia Lin</h6><small style="color:#3F6AA1;">Product Director, CloudScale</small></div></div></div></div>
+      </div>
+    </div>
+  </section>
+
+  <!-- FAQ Section (Light) - Clean pattern -->
+  <section id="faq" class="section-light">
+    <div class="container">
+      <div class="text-center mb-5" data-aos="fade-up"><span class="badge-premium"><i class="fas fa-lightbulb"></i> Insights</span><h2 class="section-title display-5 fw-bold mt-3">Curious Minds Ask</h2></div>
+      <div class="row justify-content-center">
+        <div class="col-lg-8">
+          <div id="faqContainer">
+            <div class="faq-item" data-aos="fade-up"><div class="faq-question">What makes TechMorph different? <i class="fas fa-chevron-down"></i></div><div class="faq-answer">We fuse AI-native development with molecular scalability, delivering enterprise-grade resilience and hypergrowth readiness. Our approach ensures faster time-to-market and future-proof systems.</div></div>
+            <div class="faq-item" data-aos="fade-up" data-aos-delay="50"><div class="faq-question">Do you offer post-launch support? <i class="fas fa-chevron-down"></i></div><div class="faq-answer">24/7 elite support, SLA guarantees, and continuous evolution with dedicated AI reliability engineers. We stay with you beyond launch.</div></div>
+            <div class="faq-item" data-aos="fade-up" data-aos-delay="100"><div class="faq-question">What is the typical timeline for an MVP? <i class="fas fa-chevron-down"></i></div><div class="faq-answer">Molecular MVPs in 4 weeks. Full platforms in 12-16 weeks with agile sprints and transparent dashboards.</div></div>
+            <div class="faq-item" data-aos="fade-up" data-aos-delay="150"><div class="faq-question">Can you integrate AI into existing systems? <i class="fas fa-chevron-down"></i></div><div class="faq-answer">Absolutely. We retrofit legacy systems with custom AI agents, LLM pipelines, and predictive analytics seamlessly.</div></div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Contact (Mid) -->
+  <section id="contact" class="section-mid">
+    <div class="container">
+      <div class="contact-card" data-aos="flip-up">
+        <div class="row g-5 align-items-center">
+          <div class="col-lg-5"><h2 class="display-6 fw-bold" style="color:#2E4A73;">Ignite your digital evolution</h2><p class="mt-3" style="color:#3F6AA1;">Our molecular architects are ready to bond with your vision.</p><div class="mt-4"><i class="fas fa-envelope" style="color:#2E4A73; width:28px;"></i> techmorphpvtltd@gmail.com<br><a href="https://wa.me/923700362156" target="_blank" style="color: inherit; text-decoration: none;"><i class="fab fa-whatsapp" style="color:#2E4A73; width:28px;"></i> +92 370-0362156</a></div><div class="mt-4 d-flex gap-3"><a href="https://github.com/techmorph-pvtltd" target="_blank" style="color:#2E4A73;"><i class="fab fa-github fa-xl"></i></a><a href="https://www.linkedin.com/company/techmorph-studio/" target="_blank" style="color:#2E4A73;"><i class="fab fa-linkedin fa-xl"></i></a><a href="https://www.instagram.com/techmorph.studio/" target="_blank" style="color:#2E4A73;"><i class="fab fa-instagram fa-xl"></i></a><a href="https://www.facebook.com/profile.php?id=61576491839028" target="_blank" style="color:#2E4A73;"><i class="fab fa-facebook fa-xl"></i></a></div></div>
+          <div class="col-lg-7"><form id="contactForm"><input type="text" class="form-control form-control-custom mb-3" placeholder="Full name" required><input type="email" class="form-control form-control-custom mb-3" placeholder="Email" required><textarea rows="3" class="form-control form-control-custom mb-4" placeholder="Project vision / Molecular idea"></textarea><button type="submit" class="btn-primary-custom w-100 py-3"><i class="fas fa-paper-plane"></i> Submit Inquiry →</button></form></div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Footer -->
+  <footer class="footer">
+    <div class="container"><div class="row align-items-center"><div class="col-md-6"><h4 class="fw-bold">TechMorph<span style="color:#9DB7D5;">.</span></h4><p class="small opacity-75">© 2026 — HyperSonic AI Engineering Lab</p></div><div class="col-md-6 text-md-end"><a href="https://github.com/techmorph-pvtltd" target="_blank" class="me-3"><i class="fab fa-github fa-lg"></i></a><a href="https://www.linkedin.com/company/techmorph-studio/" target="_blank" class="me-3"><i class="fab fa-linkedin fa-lg"></i></a><a href="https://www.instagram.com/techmorph.studio/" target="_blank" class="me-3"><i class="fab fa-instagram fa-lg"></i></a><a href="https://www.facebook.com/profile.php?id=61576491839028" target="_blank"><i class="fab fa-facebook fa-lg"></i></a></div></div></div>
+  </footer>
+  <a href="#" class="scroll-top" id="scrollTopBtn"><i class="fas fa-arrow-up"></i></a>
+
+  <!-- Scripts -->
+  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/js/bootstrap.bundle.min.js"></script>
+  <script src="https://unpkg.com/aos@2.3.1/dist/aos.js"></script>
+  <script>
+    AOS.init({ once: true, duration: 800 });
+
+    // Preloader simple
+    window.addEventListener('load', () => { });
+
+    // Scroll Top + Navbar sticky
+    const scrollBtn = document.getElementById('scrollTopBtn');
+    window.onscroll = () => { if (window.scrollY > 500) scrollBtn.style.opacity = '1'; else scrollBtn.style.opacity = '0'; };
+    scrollBtn.addEventListener('click', (e) => { e.preventDefault(); window.scrollTo({ top: 0, behavior: 'smooth' }); });
+    document.querySelectorAll('a[href^="#"]').forEach(anchor => { anchor.addEventListener('click', function(e) { const target = document.querySelector(this.getAttribute('href')); if (target) { e.preventDefault(); target.scrollIntoView({ behavior: 'smooth' }); } }); });
+    document.getElementById('contactForm').addEventListener('submit', (e) => { e.preventDefault(); alert('✓ Molecular transmission received. Our AI architect will respond within 12 hours.'); e.target.reset(); });
+
+    // FAQ Accordion logic - clean pattern
+    const faqQuestions = document.querySelectorAll('.faq-question');
+    faqQuestions.forEach(btn => {
+      btn.addEventListener('click', () => {
+        const answer = btn.nextElementSibling;
+        const isActive = answer.classList.contains('show');
+        document.querySelectorAll('.faq-answer').forEach(ans => ans.classList.remove('show'));
+        document.querySelectorAll('.faq-question').forEach(q => q.classList.remove('active'));
+        if (!isActive) {
+          answer.classList.add('show');
+          btn.classList.add('active');
+        }
+      });
+    });
+    // open first by default for better UX
+    if(faqQuestions.length) faqQuestions[0].click();
+
+    // MOLECULAR CANVAS WITH MOUSE REPEL
+    const canvas = document.getElementById('molecularCanvas');
+    const ctx = canvas.getContext('2d');
+    let w = window.innerWidth, h = window.innerHeight;
+    function resizeCanvas() { w = window.innerWidth; h = window.innerHeight; canvas.width = w; canvas.height = h; }
+    resizeCanvas();
+    window.addEventListener('resize', resizeCanvas);
+    const atoms = [];
+    const ATOM_COUNT = 55;
+    const BOND_DIST = 150;
+    let mouseX = -1000, mouseY = -1000;
+    document.addEventListener('mousemove', (e) => { mouseX = e.clientX; mouseY = e.clientY; });
+    for (let i = 0; i < ATOM_COUNT; i++) {
+      atoms.push({ x: Math.random() * w, y: Math.random() * h, vx: (Math.random() - 0.5) * 0.4, vy: (Math.random() - 0.5) * 0.4, radius: Math.random() * 3 + 2, color: `hsl(210, 65%, 55%)` });
+    }
+    function drawMolecular() {
+      if (!ctx) return;
+      ctx.clearRect(0, 0, w, h);
+      for (let i = 0; i < atoms.length; i++) {
+        for (let j = i + 1; j < atoms.length; j++) {
+          const dx = atoms[i].x - atoms[j].x, dy = atoms[i].y - atoms[j].y, dist = Math.hypot(dx, dy);
+          if (dist < BOND_DIST) { ctx.beginPath(); ctx.moveTo(atoms[i].x, atoms[i].y); ctx.lineTo(atoms[j].x, atoms[j].y); ctx.strokeStyle = `rgba(46, 74, 115, ${0.25 * (1 - dist / BOND_DIST)})`; ctx.lineWidth = 1.2; ctx.stroke(); }
+        }
+      }
+      for (let a of atoms) {
+        // Mouse repel effect
+        const dxMouse = a.x - mouseX, dyMouse = a.y - mouseY, distMouse = Math.hypot(dxMouse, dyMouse);
+        if (distMouse < 100) {
+          const angle = Math.atan2(dyMouse, dxMouse);
+          const force = (100 - distMouse) / 100 * 1.2;
+          a.vx += Math.cos(angle) * force;
+          a.vy += Math.sin(angle) * force;
+        }
+        a.vx *= 0.99;
+        a.vy *= 0.99;
+        a.x += a.vx;
+        a.y += a.vy;
+        if (a.x < 0) a.x = w; if (a.x > w) a.x = 0; if (a.y < 0) a.y = h; if (a.y > h) a.y = 0;
+        ctx.beginPath(); ctx.arc(a.x, a.y, a.radius, 0, Math.PI*2); ctx.fillStyle = a.color; ctx.shadowBlur = 8; ctx.shadowColor = '#2E4A73'; ctx.fill(); ctx.shadowBlur = 0; ctx.beginPath(); ctx.arc(a.x, a.y, a.radius*0.5, 0, Math.PI*2); ctx.fillStyle = 'rgba(255,255,240,0.8)'; ctx.fill();
+      }
+      requestAnimationFrame(drawMolecular);
+    }
+    drawMolecular();
+  </script>
+</body>
+</html>
